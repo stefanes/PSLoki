@@ -25,21 +25,21 @@
     )
 
     process {
-        Write-Debug "Input timestamp: $Timestamp"
+        Write-Debug -Message "Input timestamp: $Timestamp"
 
         # Check if already a Unix Epoch string
         if ($Timestamp -notmatch '^\d{10}(?:\d{9})?$') {
             if (-Not $Timestamp) {
                 $date = [DateTime]::UtcNow
-                Write-Debug "Generated new timestamp: $($date.ToString('yyyy-MM-ddTHH:mm:ssZ'))"
+                Write-Debug -Message "Generated new timestamp: $($date.ToString('yyyy-MM-ddTHH:mm:ssZ'))"
             }
             else {
-                $date = [DateTime]::Parse($Timestamp)
+                $date = [DateTime]::Parse($Timestamp, [CultureInfo]::InvariantCulture)
             }
 
             # Convert to Unix Epoch
             $Timestamp = Get-Date $date.ToUniversalTime() -UFormat %s
-            Write-Debug "Converted to timestamp Unix Epoch: $Timestamp"
+            Write-Debug -Message "Converted to timestamp Unix Epoch: $Timestamp"
         }
 
         # Output Unix Epoch

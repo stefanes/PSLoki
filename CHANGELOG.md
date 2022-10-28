@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.1
+
+* :recycle: INTERNAL: Make timestamps culture-independent.
+
 ## Version 0.1.0
 
 * Initial version, see [README.md](README.md#usage) for how to use this module.

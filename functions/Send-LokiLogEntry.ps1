@@ -120,8 +120,8 @@
         # Note: Using 'Invoke-WebRequest' to get the headers
         $eap = $ErrorActionPreference
         $ErrorActionPreference = 'SilentlyContinue'
-        Write-Debug -Message ("Invoking web request: POST " + $URI)
-        Write-Debug -Message ("Loki log entries: " + $splat.Body)
+        Write-Verbose -Message "Invoking web request: POST $URI"
+        Write-Debug -Message "Loki log entries: $($splat.Body)"
         $response = Invoke-WebRequest @splat -Uri $URI
         $ErrorActionPreference = $eap
 
