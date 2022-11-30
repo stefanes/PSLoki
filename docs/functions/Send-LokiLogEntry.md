@@ -7,7 +7,7 @@ Send Loki log entries to an HTTP endpoint.
 
 ```
 Send-LokiLogEntry [-URI <Uri>] -Labels <Hashtable> -Entries <Hashtable[]> [-Timestamp <String>]
- [-ContentType <String>] [-AccessToken <String>] [<CommonParameters>]
+ [-AccessToken <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -104,21 +104,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -ContentType
-Specifies the content type of the request.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Application/json
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```

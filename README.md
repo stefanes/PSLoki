@@ -8,8 +8,6 @@ PowerShell module for pushing log entries to Loki.
 
 ![Grafana](docs/resources/grafana.png)
 
-> _:heavy_check_mark: See [here](https://github.com/stefanes/tibber-pulse) for an example of this module in action..._
-
 ## Installation
 
 Using the [latest version of PowerShellGet](https://www.powershellgallery.com/packages/PowerShellGet):

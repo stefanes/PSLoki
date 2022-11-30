@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.2
+
+* Add support for Windows PowerShell (Note: PowerShell Core is recommended).
+
 ## Version 0.1.1
 
 * :recycle: INTERNAL: Make timestamps culture-independent.
