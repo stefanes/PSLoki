@@ -3,7 +3,7 @@
     ModuleVersion = '0.1.2'
     RootModule    = 'PSLoki.psm1'
     Author        = 'Stefan Eskelid'
-    Copyright     = 'Copyright 2022 Stefan Eskelid. All rights reserved.'
+    Copyright     = 'Copyright 2023 Stefan Eskelid. All rights reserved.'
     Guid          = '59642104-9261-458d-a5f0-b18f82437cb9'
     PrivateData   = @{
         PSData = @{
