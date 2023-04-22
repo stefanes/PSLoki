@@ -1,6 +1,6 @@
 ﻿@{
     Description   = 'PowerShell module for pushing log entries to Loki'
-    ModuleVersion = '0.1.2'
+    ModuleVersion = '0.1.3'
     RootModule    = 'PSLoki.psm1'
     Author        = 'Stefan Eskelid'
     Copyright     = 'Copyright 2023 Stefan Eskelid. All rights reserved.'

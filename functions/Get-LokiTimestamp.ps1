@@ -21,7 +21,10 @@
     param (
         # Specifies the timstamp to parse, if provided.
         [Parameter(ValueFromPipelineByPropertyName)]
-        [string] $Timestamp
+        [string] $Timestamp,
+
+        # Specifies the number of seconds to add to the timestamp. The value can be negative or positive.
+        [int] $AddSeconds = 0
     )
 
     process {
@@ -32,15 +35,16 @@
             if (-Not $Timestamp) {
                 $date = [DateTime]::UtcNow
                 Write-Debug -Message "Generated new timestamp: $($date.ToString('yyyy-MM-ddTHH:mm:ssZ'))"
+            } else {
+                $date = [DateTime]::Parse($Timestamp, [CultureInfo]::InvariantCulture).ToUniversalTime()
             }
-            else {
-                $date = [DateTime]::Parse($Timestamp, [CultureInfo]::InvariantCulture)
-            }
-
-            # Convert to Unix Epoch
-            $Timestamp = Get-Date $date.ToUniversalTime() -UFormat %s
-            Write-Debug -Message "Converted to timestamp Unix Epoch: $Timestamp"
+        } else {
+            $date = [DateTime]::Parse('1970-01-01T00:00:00Z', [CultureInfo]::InvariantCulture).ToUniversalTime().AddSeconds($Timestamp.Substring(0, 10))
         }
+
+        # Convert to Unix Epoch
+        $Timestamp = Get-Date ($date.AddSeconds($AddSeconds)) -UFormat %s
+        Write-Debug -Message "Converted to timestamp Unix Epoch: $Timestamp"
 
         # Output Unix Epoch
         $Timestamp.PadRight(19, '0')

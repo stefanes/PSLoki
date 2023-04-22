@@ -14,6 +14,10 @@ Describe "Get-LokiTimestamp" {
         Get-LokiTimestamp -Timestamp '2022-09-07T14:51:57Z' | Should -Be '1662562317000000000'
     }
 
+    It "Can get Unix Epoch from date adding seconds" {
+        Get-LokiTimestamp -Timestamp '2022-09-07T14:51:57Z' -AddSeconds 100 | Should -Be '1662562417000000000'
+    }
+
     It "Can get Unix Epoch back" {
         Get-LokiTimestamp -Timestamp '1662562317000000000' | Should -Be '1662562317000000000'
     }
@@ -29,8 +33,7 @@ Describe "Send-LokiLogEntry" {
                     line = "log something"
                 }
             )
-        }
-        else {
+        } else {
             Write-Warning "Environment variable '`$env:LOKI_ACCESS_TOKEN' not set..."
         }
         $response | Should -Not -Be $null
@@ -47,6 +50,7 @@ Describe "Send-LokiLogEntry" {
                 }
                 @{
                     line = "log something else"
+                    time = $(Get-LokiTimestamp)
                 }
             )
         }

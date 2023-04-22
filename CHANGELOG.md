@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.3
+
+* Add support for modifying the timestamp returned by `Get-LokiTimestamp` by adding/subtracting seconds.
+
 ## Version 0.1.2
 
 * Add support for Windows PowerShell (Note: PowerShell Core is recommended).
