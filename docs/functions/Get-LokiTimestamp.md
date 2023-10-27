@@ -6,7 +6,7 @@ Create a timestamp suitable for Loki log entries (Unix Epoch in nanoseconds).
 ## SYNTAX
 
 ```
-Get-LokiTimestamp [[-Timestamp] <String>] [[-AddSeconds] <Int32>] [<CommonParameters>]
+Get-LokiTimestamp [[-Timestamp] <String>] [[-Date] <DateTime>] [[-AddSeconds] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,6 +34,12 @@ $timestamp = Get-LokiTimestamp -Timestamp '1662562317000000000'
 Write-Host "Unix Epoch for 1662562317000000000 is, you guessed it...: $timestamp"
 ```
 
+### EXAMPLE 4
+```
+$timestamp = Get-LokiTimestamp -Date $([DateTime]::Parse('2022-09-07T14:51:57Z'))
+Write-Host "Unix Epoch for 2022-09-07T14:51:57Z is: $timestamp"
+```
+
 ## PARAMETERS
 
 ### -Timestamp
@@ -51,6 +57,21 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -Date
+Specifies the date to parse, if provided.
+
+```yaml
+Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -AddSeconds
 Specifies the number of seconds to add to the timestamp.
 The value can be negative or positive.
@@ -61,7 +82,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: 3
 Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False

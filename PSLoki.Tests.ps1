@@ -10,12 +10,16 @@ Describe "Get-LokiTimestamp" {
         Get-LokiTimestamp | Should -Not -Be $null
     }
 
-    It "Can get Unix Epoch from date" {
+    It "Can get Unix Epoch from date string" {
         Get-LokiTimestamp -Timestamp '2022-09-07T14:51:57Z' | Should -Be '1662562317000000000'
     }
 
-    It "Can get Unix Epoch from date adding seconds" {
+    It "Can get Unix Epoch from date string adding seconds" {
         Get-LokiTimestamp -Timestamp '2022-09-07T14:51:57Z' -AddSeconds 100 | Should -Be '1662562417000000000'
+    }
+
+    It "Can get Unix Epoch from date" {
+        Get-LokiTimestamp -Date $([DateTime]::Parse('2022-09-07T14:51:57Z')) | Should -Be '1662562317000000000'
     }
 
     It "Can get Unix Epoch back" {
