@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.6
+
+- [`Send-LokiLogEntry`](docs/functions/Send-LokiLogEntry.md) can now output the result to the console using the `-OutputToConsole`/`-PassThru` parameters.
+
 ## Version 0.1.5
 
 - Override defaults using the `LOKI_ENDPOINT` **or** `LOKI_HOST` environment variables in [`Send-LokiLogEntry`](docs/functions/Send-LokiLogEntry.md).

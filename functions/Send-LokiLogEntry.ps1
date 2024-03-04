@@ -69,7 +69,13 @@
             elseif ($env:LOKI_ACCESS_TOKEN) {
                 $env:LOKI_ACCESS_TOKEN
             }
-        )
+        ),
+
+        # Switch to output result to the console.
+        [switch] $OutputToConsole,
+
+        # Switch to still return the reponse even when the '-OutputToConsole' parameter is provided.
+        [switch] $PassThru
     )
 
     begin {
@@ -144,7 +150,17 @@ Exception:
             return
         }
 
+        # Output to console
+        if ($OutputToConsole.IsPresent) {
+            $columns = @(
+                @{ label = 'Status'; expression = { "$($_.StatusCode) $($_.StatusDescription)" } }
+            )
+            $response | Select-Object $columns | ForEach-Object { $_ | Out-Host }
+        }
+
         # Output response
-        $response
+        if (-Not $OutputToConsole.IsPresent -Or $PassThru.IsPresent) {
+            $response
+        }
     }
 }

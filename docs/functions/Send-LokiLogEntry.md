@@ -7,7 +7,7 @@ Send Loki log entries to an HTTP endpoint.
 
 ```
 Send-LokiLogEntry [-URI <Uri>] -Labels <Hashtable> -Entries <Hashtable[]> [-Timestamp <String>]
- [-AccessToken <String>] [<CommonParameters>]
+ [-AccessToken <String>] [-OutputToConsole] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -129,6 +129,36 @@ Default value: $(
             }
         )
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -OutputToConsole
+Switch to output result to the console.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+Switch to still return the reponse even when the '-OutputToConsole' parameter is provided.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

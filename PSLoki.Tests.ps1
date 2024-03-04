@@ -43,6 +43,21 @@ Describe "Send-LokiLogEntry" {
         $response | Should -Not -Be $null
     }
 
+    It "Can send single Loki log entry with output to console" {
+        if ($env:LOKI_ACCESS_TOKEN) {
+            $response = Send-LokiLogEntry -Labels @{
+                'label' = 'value'
+            } -Entries @(
+                @{
+                    line = "log something"
+                }
+            ) -OutputToConsole -PassThru
+        } else {
+            Write-Warning "Environment variable '`$env:LOKI_ACCESS_TOKEN' not set..."
+        }
+        $response | Should -Not -Be $null
+    }
+
     It "Can send multiple Loki log entries metrics" {
         if ($env:LOKI_ACCESS_TOKEN) {
             $response = Send-LokiLogEntry -Labels @{
@@ -57,8 +72,7 @@ Describe "Send-LokiLogEntry" {
                     time = $(Get-LokiTimestamp)
                 }
             )
-        }
-        else {
+        } else {
             Write-Warning "Environment variable '`$env:LOKI_ACCESS_TOKEN' not set..."
         }
         $response | Should -Not -Be $null
@@ -66,8 +80,8 @@ Describe "Send-LokiLogEntry" {
 
     It "Fails with invalid log entriy" {
         { Send-LokiLogEntry -Labels @{
-            'label' = 'value'
-        } -Entries @"
+                'label' = 'value'
+            } -Entries @"
 {
   "streams": [
     {
