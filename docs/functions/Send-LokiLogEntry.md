@@ -42,7 +42,7 @@ Write-Host "Log entries sent to Loki [$($response.StatusCode) $($response.Status
 
 ### -URI
 Specifies the URI for the request.
-Override default using the LOKI_HOST environment variable.
+Override default using the LOKI_ENDPOINT or LOKI_HOST environment variables.
 
 ```yaml
 Type: Uri
@@ -52,10 +52,11 @@ Aliases: URL
 Required: False
 Position: Named
 Default value: $(
-            if ($env:LOKI_HOST) {
-                "$env:LOKI_HOST/loki/api/v1/push"
-            }
-            else {
+            if ($env:LOKI_ENDPOINT) {
+                $env:LOKI_ENDPOINT
+            } elseif ($env:LOKI_HOST) {
+                "https://$env:LOKI_HOST/loki/api/v1/push" -replace '^https:\/\/http', 'http'
+            } else {
                 'https://logs-prod-us-central1.grafana.net/loki/api/v1/push'
             }
         )

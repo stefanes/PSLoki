@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.5
+
+- Override defaults using the `LOKI_ENDPOINT` **or** `LOKI_HOST` environment variables in [`Send-LokiLogEntry`](docs/functions/Send-LokiLogEntry.md).
+
 ## Version 0.1.4
 
 - [`Get-LokiTimestamp`](docs/functions/Get-LokiTimestamp.md) now knows how to parse `DateTime` objects with the `-Date` parameter.

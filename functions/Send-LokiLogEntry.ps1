@@ -32,14 +32,15 @@
     [CmdletBinding(DefaultParameterSetName = 'URI')]
     param (
         # Specifies the URI for the request.
-        # Override default using the LOKI_HOST environment variable.
+        # Override default using the LOKI_ENDPOINT or LOKI_HOST environment variables.
         [Parameter(ParameterSetName = 'URI', ValueFromPipelineByPropertyName)]
         [Alias('URL')]
         [Uri] $URI = $(
-            if ($env:LOKI_HOST) {
-                "$env:LOKI_HOST/loki/api/v1/push"
-            }
-            else {
+            if ($env:LOKI_ENDPOINT) {
+                $env:LOKI_ENDPOINT
+            } elseif ($env:LOKI_HOST) {
+                "https://$env:LOKI_HOST/loki/api/v1/push" -replace '^https:\/\/http', 'http'
+            } else {
                 'https://logs-prod-us-central1.grafana.net/loki/api/v1/push'
             }
         ),

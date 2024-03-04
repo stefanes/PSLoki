@@ -67,9 +67,11 @@ $logEntries = @(
         line = "log something else"
     }
 )
-$response = Send-LokiLogEntry -Labels $labels -Entries $logEntries
+$response = Send-LokiLogEntry -URI "https://logs-prod-us-central1.grafana.net/loki/api/v1/push" -Labels $labels -Entries $logEntries
 Write-Host "Log entries sent to Loki [$($response.StatusCode) $($response.StatusDescription)]"
 ```
+
+The endpoint URL can also be specified by setting the `LOKI_ENDPOINT` or `LOKI_HOST` environment variables.
 
 ### Debugging
 
